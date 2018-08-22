@@ -12,26 +12,32 @@ package EjemploSingleton;
 public class CajeroSingleton {
     
     private static CajeroSingleton cajero = null;
-    private final String nombre = "Cajero 1";
-    private final String caja = "10";
-    private String nombrecliente;
-    private CajeroSingleton(){}
+    private String nombrecliente, nombrecajero, caja;
+    private CajeroSingleton(String nombrecajero, String caja){
+        
+        setNombreCajero(nombrecajero);
+        setCaja(caja);
+        
+    }
     
-    public static CajeroSingleton getInstance(){
+    public static CajeroSingleton getInstance(String nombrecajero, String caja){
         
         if(cajero == null){
             
-            cajero = new CajeroSingleton();
+            cajero = new CajeroSingleton(nombrecajero, caja);
             
-        } 
+        } else{
+            
+            System.out.println("No se puede crear: "+nombrecajero+" en la caja "+caja+", porque ya está atendiendo un cajero");
+        }
         
         return cajero;
         
     }
     
-    public String getNombre(){
+    public String getNombreCajero(){
         
-        return nombre;
+        return nombrecajero;
     }
     
     public String getCaja(){
@@ -44,9 +50,19 @@ public class CajeroSingleton {
         this.nombrecliente = nombrecliente;
     }
     
+     
+    public void setNombreCajero(String nombrecajero){
+        
+        this.nombrecajero = nombrecajero;
+    }
     public String getNombreCliente(){
         
         return nombrecliente;
+    }
+    
+    public void setCaja(String caja){
+        
+        this.caja = caja;
     }
 
 }
